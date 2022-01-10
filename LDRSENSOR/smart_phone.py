@@ -9,7 +9,7 @@ client=mqtt.Client("SMARTPHONE")
 client.connect(mqtt_broker)
 
 client.loop_start()
-client.subscribe("LDR")
+client.subscribe("Ldr")
 client.on_message=on_message
 time.sleep(1000)
 client.loop_stop()

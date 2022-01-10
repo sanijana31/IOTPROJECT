@@ -1,0 +1,28 @@
+body {
+    text-align: center;
+    background-color: rgb(225, 232, 255);
+}
+
+h2 {
+    padding: 0rem 2rem;
+}
+
+div.heading {
+    padding: 1rem 0rem;
+}
+
+div.acc-card1 {
+    margin: 0rem 1rem 1rem 12rem;
+}
+
+div.acc-card2 {
+    margin: 0rem 4rem 1rem 1rem;
+}
+
+div.velocity {
+    padding: 2rem 2rem;
+}
+
+div.starting {
+    padding: 1rem 0rem;
+}
