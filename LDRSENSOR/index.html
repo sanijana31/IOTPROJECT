@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+<link rel="stylesheet" href="obstracle.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Document</title>
+</head>
+
+<script>
+  function f(){
+    var vmax=document.getElementById("vmax").value;
+    var vmin=document.getElementById("vmin").value;
+    var cmax=document.getElementById("cmax").value;
+    var cmin=document.getElementById("cmin").value;
+    var imax=document.getElementById("imax").value;
+    var imin=document.getElementById("imin").value;
+    var rmax=document.getElementById("rmax").value;
+    var rmin=document.getElementById("rmin").value;
+
+    var settings = {
+      "url": "http://127.0.0.1:5000/book",
+      "method": "POST",
+      "timeout": 0,
+      "headers": {
+        "Content-Type": "application/json"
+      },
+      "data": JSON.stringify({
+        "vmax": vmax,
+        "vmin": vmin,
+        "cmax": cmax,
+        "cmin": cmin,
+        "imax": imax,
+        "imin": imin,
+        "rmax": rmax,
+        "rmin": rmin
+      })
+    };
+    
+    function c(str) {
+      
+    document.getElementById("list").innerHTML = str;
+            
+            //console.log(str);
+
+}
+
+
+    $.ajax(settings).done(function (response) {
+      // console.log(response);
+
+      c(JSON.stringify(response));
+    });
+  }
+  
+  
+  </script>
+  <body>
+   
+      <div class="heading">
+          <h1 class="display-1 text-center fw-bolder">Obstracle Detector</h1>
+      </div>
+  
+  
+      <div class="row ">
+          <div class="col-6">
+              <div class="card acc-card1 shadow p-3 bg-body rounded">
+                  <!-- LED Sensor-->
+                  <div class="card-header">
+                      <h2>LED</h2>
+                  </div>
+  
+                  <div class="card-body">
+                      <!-- Max. Min.  Input-->
+                      <h5>Please enter the range of the Voltage and Current</h5>
+                      <form>
+                          <div class="velocity">
+                              <div class="input-group">
+                                  <span class="input-group-text" id="">Voltage</span>
+                                  <input type="number" id="vmax" class="form-control" placeholder="max" step="0.01"
+                                      aria-label="max" required>
+                                  <input type="number" id="vmin" class="form-control" placeholder="min" step="0.01"
+                                      aria-label="min" required>
+                              </div>
+                              <br>
+                              <div class="input-group">
+                                  <span class="input-group-text" id="">Current</span>
+                                  <input type="number" id="cmax" class="form-control" placeholder="max" step="0.01"
+                                      aria-label="max" required>
+                                  <input type="number" id="cmin" class="form-control" placeholder="min" step="0.01"
+                                      aria-label="min" required>
+                              </div>
+                              <br>
+                          </div>
+  
+                  </div>
+                  <!--End LED Sensor-->
+                  <!-- LDR Sensor -->
+                  <div class="card-header">
+                      <h2>LDR</h2>
+                  </div>
+  
+                  <div class="card-body">
+                      <!-- Max. Min. Input-->
+                      <h5>Please enter the range of the Intensity and Resistance</h5>
+  
+                      <div class="velocity">
+                          <div class="input-group">
+                              <span class="input-group-text" id=""> Intensity </span>
+                              <input type="number" id="imax" class="form-control" placeholder="max" step="0.01"
+                                  aria-label="max" required>
+                              <input type="number" id="imin" class="form-control" placeholder="min" step="0.01"
+                                  aria-label="min" required>
+                          </div>
+                          <br>
+                          <div class="input-group">
+                              <span class="input-group-text" id="">Resistance</span>
+                              <input type="number" id="rmax" class="form-control" placeholder="max" step="0.01"
+                                  aria-label="max" required>
+                              <input type="number" id="rmin" class="form-control" placeholder="min" step="0.01"
+                                  aria-label="min" required>
+                          </div>
+                          <br>
+  
+                      </div>
+                  </div>
+                  <!--End LDR Sensor-->
+  
+              </div>
+  
+          </div>
+  
+          <div class="col-6">
+              <!-- Output-->
+              <div class="card acc-card2 shadow p-3 bg-body rounded">
+                <h2>Output</h2>
+                  <div class="card-header" id="list">
+                      
+                      <!-- <ul id ="list"></ul> -->
+                  </div>
+  
+  
+              </div>
+  
+              <!--End LDR Sensor-->
+          </div>
+      </div>
+  
+      <!--Interval-->
+      <!-- <div class="row" style="padding:1rem;">
+          <div class="col-3"></div>
+          <div class="col-3">
+              <h4 class="" id="">Enter the time Interval</h4>
+          </div>
+          <div class="col-3">
+              <input type="number" name="time" class="form-control" step="0.01" placeholder="in second" required>
+          </div>
+          <div class="col-3">
+  
+          </div>
+      </div> -->
+      <!---->
+  
+      <!-- Buttons-->
+      <div class="row starting">
+          <div class="col-2">
+  
+          </div>
+          <div class="col-3 d-grid">
+            <!-- <input type="button" class="btn-btn-primary"  onclick="f()"> -->
+                 
+                  <button type="button" class="btn btn-primary" onclick="f()"> <h2 class="display-7 fw-bold"> Start Sensor</h2></button>
+          </div>
+          <div class="col-2">
+  
+          </div>
+          <!-- <div class="col-3 d-grid">
+              <button type="submit" name="button" value="stopping" class="btn btn-danger btn-lg" id="end"
+                  onsubmit="endSensor()" disabled>
+                  <h2 class="display-7 fw-bold"> Stop Sensor </h2>
+              </button>
+          </div> -->
+          </form>
+          <div class="col-2">
+  
+          </div>
+      </div>
+      <!---->
+  
+  
+
+</body>
+</html>
