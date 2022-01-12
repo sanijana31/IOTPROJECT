@@ -1,6 +1,6 @@
 
 
-import ldr_sensor as Ldr
+import Proximity_sensor as Ldr
 import Mqtt_Publisher_Clint as MQTT
 import time
 import threading
