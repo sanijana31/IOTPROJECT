@@ -1,6 +1,11 @@
 from flask_cors import CORS
 from flask import Flask, jsonify, request
 from random import randrange, uniform
+import Mqtt_Publisher_Clint as M
+import ldr_sensor as sensor
+
+Mqtt_obj=M.MQTT("Ldr")
+Mqtt_obj.Connect_MQTT_Server()
 
 app = Flask(__name__)
 CORS(app)
@@ -35,9 +40,17 @@ def get_book(name):
 def create_book():
     body_data = request.get_json()
     books_db.append(body_data)
-    total = int(books_db[1]["vmax"]) + int(books_db[1]["vmin"])
-    total=total*uniform(2.0, 10.0)
-    return jsonify(total)
+    max_res,min_res = int(books_db[1]["vmax"]), int(books_db[1]["vmin"])
+    ldr_sensor=sensor.ldr(max_res,min_res)
+    data=ldr_sensor.value_gen()
+    Mqtt_obj.Publish_Data_To_Server(data)
+    return jsonify(data)
+@app.route('/stop', methods=['POST'])
+def stop():
+    stop=request.get_json()
+    msg="MQTT stop"
+    return jsonify(msg)
+
 
 
 

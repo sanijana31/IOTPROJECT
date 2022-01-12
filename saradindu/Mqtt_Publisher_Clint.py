@@ -26,4 +26,3 @@ class MQTT:
     def Publish_Data_To_Server(self,input):
             self.client.publish(self.client_Name,input)
             print("publishing "+ str(input)+" to the topic ",self.client_Name)
-            time.sleep(.2)

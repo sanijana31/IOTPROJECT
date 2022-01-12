@@ -26,8 +26,6 @@ class ldr:
         
     def value_gen(self):
         intensity = uniform(2.0, 10.0)
-        '''self.max_resistence = 10000
-        self.min_resistence = 200'''
         self.cur_resistence = ((int(self.max_resistence) - int(self.min_resistence))/8)*intensity
         print( )
         return self.cur_resistence
