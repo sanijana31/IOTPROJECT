@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>coap_interface</title>
+</head>
+<body>
+    <div class="heading">
+        <h2>Obstacle Detector</h2>
+    </div>
+
+
+    <div class="row ">
+        <div class="col-6">
+            <div class="card acc-card1 shadow p-3 bg-body rounded">
+                <!-- LED Sensor-->
+                <div class="card-header">
+                    <h3><b>LED</b></h3>
+                </div>
+
+                <div class="card-body">
+                    <!-- Max. Min.  Input-->
+                    <h5>Please enter the voltage range</h5>
+                    <form action="/" method="POST">
+                        <div class="velocity">
+                            <div class="input-group">
+                                <span class="input-group-text" id="">Voltage</span>
+                                <input type="number" id="vmax" class="form-control" placeholder="max" step="0.01"
+                                    aria-label="max" required>
+                                <input type="number" id="vmin" class="form-control" placeholder="min" step="0.01"
+                                    aria-label="min" required>
+                            </div>
+                        </div>
+
+                </div>
+                <!--End LED Sensor-->
+                <!-- LDR Sensor -->
+                <div class="card-header">
+                    <h3><b>PROXIMITY SENSOR</b></h3>
+                </div>
+
+                <div class="card-body">
+                    <!-- Max. Min. Input-->
+                    <h5>Please enter the range of the Proximity Sensor</h5>
+
+                    <div class="velocity">
+                        <div class="input-group">
+                            <span class="input-group-text" id=""> Distance </span>
+                            <input type="number" id="imax" class="form-control" placeholder="max" step="0.01"
+                                aria-label="max" required>
+                            <input type="number" id="imin" class="form-control" placeholder="min" step="0.01"
+                                aria-label="min" required>
+                        </div>
+                    </div>
+                </div>
+                <!--End LDR Sensor-->
+
+            </div>
+
+        </div>
+
+        <div class="col-6">
+            <!-- Output-->
+            <div class="card acc-card2 shadow p-3 bg-body rounded">
+                <h3><b>OUTPUT</b></h3>
+                <div id="chart">
+                </div>
+                <div id="data"></div>
+
+            </div>
+
+            <!--End LDR Sensor-->
+        </div>
+    </div>
+
+    <!-- Buttons-->
+    <div class="row starting">
+        <div class="col-2">
+
+        </div>
+        <div class="col-sm d-grid">
+
+            <button type="submit" class="btn btn-primary">
+                <h3 class="display-7 fw-bold"> Start Sensor</h3>
+            </button>
+        </div>
+        <div class="col-sm d-grid">
+            <!-- <button class="btn btn-warning btn-lg" href="https://www.hivemq.com/demos/websocket-client/" target="_blank">
+                 <a name="button" value="Open Subcriber" ></a>
+                <h3 class="display-7 fw-bold">MQTT</h3>
+            </button> -->
+            <a href="https://www.hivemq.com/demos/websocket-client/" class="btn btn-warning btn-lg active" role="button" aria-pressed="true" target="_blank">MQTT</a>
+        </div>
+        <div class="col-sm d-grid">
+            <input type="submit" value="start">
+        </div>
+        <div class="col-2"></div>
+        </form>
+    </div>
+</body>
+</html>

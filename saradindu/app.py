@@ -38,6 +38,7 @@ def get_book(name):
 # create a book  http://127.0.0.1:5000/book/
 @app.route('/book', methods=['POST'])
 def create_book():
+    
     body_data = request.get_json()
     books_db.append(body_data)
     max_volt,min_volt = int(books_db[1]["vmax"]), int(books_db[1]["vmin"])
@@ -51,14 +52,5 @@ def stop():
     stop=request.get_json()
     msg="MQTT stop"
     return jsonify(msg)
-
-
-
-
-
-
-
-
-
 
 app.run(port=5000)

@@ -35,7 +35,7 @@ class Proximity:
     def proximity_output(self):
         led_value=self.led_output()
         #akhane vul a6e
-        constant=(self.max_voltage-self.min_voltage)*10/(self.max_distance-self.min_distance)
-        self.cur_distance=self.max_distance-(led_value-self.min_voltage)*10*constant
+        self.cur_distance=self.min_distance+(((self.max_distance-self.min_distance)/(self.max_voltage-self.min_voltage))*(self.max_voltage-led_value))
+        #self.cur_distance=self.max_distance-(led_value-self.min_voltage)*10*constant
         return self.cur_distance
     
