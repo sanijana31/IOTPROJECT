@@ -5,17 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="obstracle.css">
     <script src="https://cdn.plot.ly/plotly-2.8.3.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <title>Document</title>
+    <title>IOT</title>
 </head>
 
 <script>
     var hell;
     var flag = false;
+
     function endSensor() {
         flag = True;
         var settings = {
@@ -30,12 +30,13 @@
             })
         };
 
-        $.ajax(settings).done(function (response) {
+        $.ajax(settings).done(function(response) {
             console.log(response);
             //hell = JSON.stringify(response);
 
         });
     }
+
     function getData() {
 
         var vmax = document.getElementById("vmax").value;
@@ -58,13 +59,15 @@
             })
         };
 
-        $.ajax(settings).done(function (response) {
+        $.ajax(settings).done(function(response) {
 
             hell = JSON.stringify(response);
 
         });
+        document.getElementById("data").innerHTML = hell;
         return hell;
     }
+
     function f() {
         Plotly.newPlot('chart', [{
             y: [getData()],
@@ -72,9 +75,13 @@
         }]);
 
         var cnt = 0;
-        ref = setInterval(function () {
+        ref = setInterval(function() {
 
-            Plotly.extendTraces('chart', { y: [[getData()]] }, [0])
+            Plotly.extendTraces('chart', {
+                y: [
+                    [getData()]
+                ]
+            }, [0])
             cnt++;
             if (cnt > 500) {
                 Plotly.relayout('chart', {
@@ -86,7 +93,7 @@
             if (flag) {
                 clearInterval(ref);
             }
-        }, 1000);
+        }, 1000); //time interval
     }
 </script>
 
@@ -112,10 +119,8 @@
                         <div class="velocity">
                             <div class="input-group">
                                 <span class="input-group-text" id="">Voltage</span>
-                                <input type="number" id="vmax" class="form-control" placeholder="max" step="0.01"
-                                    aria-label="max" required>
-                                <input type="number" id="vmin" class="form-control" placeholder="min" step="0.01"
-                                    aria-label="min" required>
+                                <input type="number" id="vmax" class="form-control" placeholder="max" step="0.01" aria-label="max" required>
+                                <input type="number" id="vmin" class="form-control" placeholder="min" step="0.01" aria-label="min" required>
                             </div>
                         </div>
 
@@ -133,10 +138,8 @@
                     <div class="velocity">
                         <div class="input-group">
                             <span class="input-group-text" id=""> Distance </span>
-                            <input type="number" id="imax" class="form-control" placeholder="max" step="0.01"
-                                aria-label="max" required>
-                            <input type="number" id="imin" class="form-control" placeholder="min" step="0.01"
-                                aria-label="min" required>
+                            <input type="number" id="imax" class="form-control" placeholder="max" step="0.01" aria-label="max" required>
+                            <input type="number" id="imin" class="form-control" placeholder="min" step="0.01" aria-label="min" required>
                         </div>
                     </div>
                 </div>
@@ -152,12 +155,15 @@
                 <h3><b>OUTPUT</b></h3>
                 <div id="chart">
                 </div>
-                <div id="data"></div>
 
+                <div id="data"></div>
             </div>
+
+
 
             <!--End LDR Sensor-->
         </div>
+
     </div>
 
     <!-- Buttons-->
@@ -179,8 +185,7 @@
             <a href="https://www.hivemq.com/demos/websocket-client/" class="btn btn-warning btn-lg active" role="button" aria-pressed="true" target="_blank">MQTT</a>
         </div>
         <div class="col-sm d-grid">
-            <button type="submit" name="button" value="stopping" class="btn btn-danger btn-lg" id="end"
-                onsubmit="endSensor()">
+            <button type="submit" name="button" value="stopping" class="btn btn-danger btn-lg" id="end" onsubmit="endSensor()">
                 <h3 class="display-7 fw-bold"> Stop Sensor </h3>
             </button>
         </div>
